@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Map</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&family=EB+Garamond:wght@400;500;600&display=swap');
 
         :root {
-            --bg: #0a0a0f;
-            --surface: #111118;
-            --border: #1e1e2e;
-            --text: #e2e2f0;
-            --muted: #6b6b8a;
-            --accent: #7c6af7;
+            /* Flexoki Light */
+            --bg: rgb(255, 252, 240);
+            --surface: rgb(242, 240, 229);
+            --border: rgba(16, 15, 15, 0.12);
+            --border-strong: rgba(16, 15, 15, 0.2);
+            --text: rgb(16, 15, 15);
+            --muted: rgba(16, 15, 15, 0.5);
+            --accent: rgb(36, 131, 123);
+            --highlight: rgb(208, 162, 21);
         }
 
         * {
@@ -26,22 +29,12 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'IBM Plex Sans', sans-serif;
+            font-family: 'EB Garamond', serif;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(124, 106, 247, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(124, 106, 247, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
+
 
         .header {
             position: relative;
@@ -102,7 +95,7 @@
         .filter-btn.active {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(124, 106, 247, 0.08);
+            background: rgba(36, 131, 123, 0.08);
         }
 
         .main {
@@ -179,7 +172,7 @@
         .card:hover {
             border-color: var(--card-color, var(--accent));
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 32px rgba(16, 15, 15, 0.1);
         }
 
         .card:hover::before {
@@ -209,7 +202,7 @@
             font-size: 9px;
             padding: 3px 7px;
             border-radius: 2px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(16, 15, 15, 0.05);
             color: var(--card-color, var(--accent));
             border: 1px solid var(--card-color, var(--accent));
             white-space: nowrap;
@@ -254,7 +247,7 @@
 
         .expand-section p {
             font-size: 13px;
-            color: #a0a0c0;
+            color: rgba(16, 15, 15, 0.7);
             line-height: 1.6;
         }
 
@@ -275,7 +268,7 @@
         }
 
         .paper-list li:hover {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(36, 131, 123, 0.06);
             border-color: var(--card-color, var(--accent));
         }
 
@@ -286,12 +279,12 @@
             gap: 4px 8px;
             padding: 7px 10px;
             text-decoration: none;
-            color: #8888aa;
+            color: rgba(16, 15, 15, 0.6);
             width: 100%;
         }
 
         .paper-list li:hover a {
-            color: #b0b0cc;
+            color: rgba(16, 15, 15, 0.85);
         }
 
         .ptitle {
@@ -301,7 +294,7 @@
         }
 
         .pnote {
-            color: #555577;
+            color: rgba(16, 15, 15, 0.4);
             font-size: 10px;
             flex-shrink: 0;
         }
@@ -328,7 +321,7 @@
             font-family: 'IBM Plex Mono', monospace;
             font-size: 10px;
             padding: 3px 8px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(16, 15, 15, 0.04);
             border: 1px solid var(--border);
             border-radius: 2px;
             color: var(--muted);
@@ -352,7 +345,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            padding: 0 40px 24px;
+            padding: 20px 40px 24px;
             position: relative;
             z-index: 1;
         }
@@ -404,25 +397,25 @@
 
     <div class="legend">
         <div class="legend-item">
-            <div class="legend-dot" style="background:#7c6af7"></div> Math & Theory
+            <div class="legend-dot" style="background:#3d6b9e"></div> Math & Theory
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#3ecfcf"></div> Core ML
+            <div class="legend-dot" style="background:#24837b"></div> Core ML
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#f7826a"></div> Architectures
+            <div class="legend-dot" style="background:#af3029"></div> Architectures
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#6af790"></div> Representation
+            <div class="legend-dot" style="background:#4d7c0f"></div> Representation
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#f7d06a"></div> Generative Models
+            <div class="legend-dot" style="background:#c08800"></div> Generative Models
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#cf7aef"></div> Modalities
+            <div class="legend-dot" style="background:#7c3aed"></div> Modalities
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#ef9f4a"></div> Scale & Systems
+            <div class="legend-dot" style="background:#c05c00"></div> Scale & Systems
         </div>
     </div>
 
@@ -432,8 +425,13 @@
 
     <script>
         const COLORS = {
-            math: '#7c6af7', 'core-ml': '#3ecfcf', arch: '#f7826a',
-            repr: '#6af790', gen: '#f7d06a', modality: '#cf7aef', scale: '#ef9f4a'
+            math: '#3d6b9e',       /* blue */
+            'core-ml': '#24837b',  /* teal = flexoki accent */
+            arch: '#af3029',       /* red */
+            repr: '#4d7c0f',       /* green */
+            gen: '#c08800',        /* yellow/gold = flexoki highlight */
+            modality: '#7c3aed',   /* purple */
+            scale: '#c05c00',      /* orange */
         };
 
         const tiers = [
